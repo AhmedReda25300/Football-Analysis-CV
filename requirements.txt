@@ -1,0 +1,2 @@
+ultralytics==8.2.74
+supervision==0.22.0
