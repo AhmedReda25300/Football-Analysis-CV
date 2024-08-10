@@ -2,3 +2,5 @@ ultralytics==8.2.74
 supervision==0.22.0
 roboflow==1.1.37
 opencv-python==4.9.0.80
+supervision==0.22.0
+numpy
