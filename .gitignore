@@ -180,3 +180,5 @@ input_videos/*
 # But do not ignore the models folder itself
 !input_videos/
 
+# Ignore the football-players-detection-1 directory
+training/football-players-detection-1/
