@@ -1,6 +1,7 @@
 from utils import read_video,save_video
 from trackers import Trackers
 from team_assigner import TeamAssigner
+from player_ball_assigner import PlayerBallAssigner
 import cv2
 import os
 os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
@@ -30,11 +31,21 @@ def main():
             tracks['players'][frame_num][player_id]['team'] = team 
             tracks['players'][frame_num][player_id]['team_color'] = team_assigner.team_colors[team]
 
+
+    # Assign ball Aquazation
+    player_assigner = PlayerBallAssigner
+    for frame_num , player_track in enumerate(track['players']):
+        ball_bbox = track['ball'][frame_num][1]['bbox']
+        assigned_player = player_assigner.assign_ball_to_player(player_track,ball_bbox)
+
+        if assigned_player != -1:
+            track['players'][frame_num][assigned_player]['has_ball']=True
+
     # draw output video
     ##draw output  
     output_video_frames = tracker.draw_annotations(video_frames,tracks)   
     
     # save video
-    save_video(output_video_frames, 'output_videos/output_video_01.avi')
+    save_video(output_video_frames, 'output_videos/output_video.avi')
 if __name__ == "__main__":
     main()
