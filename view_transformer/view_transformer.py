@@ -2,9 +2,9 @@ import numpy as np
 import cv2
 
 class ViewTransformer:
-    def __init__(self, input_shape, output_shape):
+    def __init__(self):
         court_width = 68
-        court_length = 23.32 # 4 rectangles -->(((105/2)/9)*4)   105 is the length of the court
+        court_length = 3 # 4 rectangles -->(((105/2)/9)*4)   105 is the length of the court
 
         self.pixcel_vertices = np.array([
             [110, 1035],
@@ -32,7 +32,7 @@ class ViewTransformer:
         is_inside = cv2.pointPolygonTest(self.pixcel_vertices, p, False)>0
         if not is_inside:
             return None
-        reshaped_point = point.reshape(1, -1).astype(np.float32)
+        reshaped_point = point.reshape(-1,1,2).astype(np.float32)
         transformed_point = cv2.perspectiveTransform(reshaped_point, self.prespective_transform)
 
         return transformed_point.reshape(-1,2)
@@ -41,11 +41,10 @@ class ViewTransformer:
         for object, object_tracks in tracks.items():
             for frame_num, track in enumerate(object_tracks):
                 for track_id, track_info in track.items():
-                    position = track_info['adjusted_position']
+                    position = track_info['postion_adjusted']
                     position = np.array(position)
                     position_transformed = self.transform_point(position)
                     if position_transformed is not None:
                         position_transformed = position_transformed.squeeze().tolist()
                     tracks[object][frame_num][track_id]['position_transformed'] = position_transformed
 
-                    
