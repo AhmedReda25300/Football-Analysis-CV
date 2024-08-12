@@ -175,10 +175,7 @@ runs/*
 !runs/
 
 # Ignore all files inside the input_videos folder
-input_videos/*
-
-# But do not ignore the models folder itself
-!input_videos/
+Input_videos/08fd33_4.mp4
 
 # Ignore the football-players-detection-1 directory
 training/football-players-detection-1/
