@@ -68,8 +68,8 @@ class SpeedAndDisEstimator:
                         position = list(position)
                         position[1] +=40
                         position = tuple(map(int,position))
-                        cv2.putText(frame,f"Speed: {speed:.2f} km/h",position, cv2.FONT_HERSHEY_SIMPLEX,0.5,(0,0,0),2)
-                        cv2.putText(frame,f"Distance: {distance:.2f} m",(position[0],position[1]+20), cv2.FONT_HERSHEY_SIMPLEX,0.5,(0,0,0),2)
+                        cv2.putText(frame,f"D: {distance:.2f} m",(position[0]-20,position[1]), cv2.FONT_HERSHEY_SIMPLEX,0.5,(32,32,32),2)
+                        cv2.putText(frame,f"S: {speed:.2f} km/h",(position[0]-20,position[1]+20), cv2.FONT_HERSHEY_SIMPLEX,0.5,(32,32,32),2)
 
             output_frames.append(frame) 
 
