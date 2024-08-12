@@ -82,7 +82,7 @@ def main():
     speed_and_dis_estimator.draw_speed_and_dis(output_video_frames,tracks)
 
     # save video
-    save_video(output_video_frames, 'output_videos/output_video02.avi')       
+    save_video(output_video_frames, 'output_videos/final_output_video.avi')       
 
 
        

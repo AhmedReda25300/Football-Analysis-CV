@@ -162,7 +162,8 @@ cython_debug/
 #.idea/
 
 # Ignore all files inside the models folder
-models/*
+models/best.pt
+models/yolov8x.pt
 
 # But do not ignore the models folder itself
 !models/
